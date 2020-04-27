@@ -1,5 +1,5 @@
 # Hack the Interview II - Global
-These are my solutions for HackerRank's [Hack the Interview II contest](https://www.hackerrank.com/contests/hack-the-interview-ii-global/challenges) which placed within the top 100 submissions in the 2nd percentile. 
+These are my solutions for HackerRank's [Hack the Interview II Contest](https://www.hackerrank.com/contests/hack-the-interview-ii-global/challenges). These solutions placed within the top 100 submissions - in the 2nd percentile. 
 
 | Challenge | Solution |
 | --------- | -------- |
