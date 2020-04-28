@@ -6,4 +6,6 @@ Currently writing up question prompts and solution methods for Minimum String Co
 | Challenge | Solution |
 | --------- | -------- |
 | [Product Distribution](https://www.hackerrank.com/contests/hack-the-interview-ii-global/challenges/distribution-in-m-bins) | [Solution](https://github.com/TomBombadilV/hack-the-interview-ii/blob/master/product-distribution.py) |
-| [Configuring Project Management](https://www.hackerrank.com/contests/hack-the-interview-ii-global/challenges/yashs-party) | [Solution](https://github.com/TomBombadilV/hack-the-interview-ii/blob/master/configuring-project-management.py)
+| [Configuring Project Management](https://www.hackerrank.com/contests/hack-the-interview-ii-global/challenges/yashs-party) | [Solution](https://github.com/TomBombadilV/hack-the-interview-ii/blob/master/configuring-project-management.py) |
+| [Minimum String Coefficient](https://www.hackerrank.com/contests/hack-the-interview-ii-global/challenges/flipped-beauty) |
+
