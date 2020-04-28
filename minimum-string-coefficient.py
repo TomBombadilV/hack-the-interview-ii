@@ -32,6 +32,12 @@
 #    select a larger chunk later
 # 2) The case where flipping the entire range of coefficients maximizes how many
 #    coefficients you can delete from the total
+# This solution calculates "range flips" which essentially is just removing the
+# "chunks" on both ends, and "max windows" which is essentially finding the 
+# window of chunks on both ends that will maximize the sum being removed from
+# the coefficients. The algorithm will calculate the coefficient for 0 through p
+# ranged flips followed by max windows and select the smallest one.
+# Time: O(p*n) | Space: O()
 #
 # Brute Force Method:
 # I programmed this because I was stuck and couldn't tell what my algorithm was
@@ -40,7 +46,7 @@
 # coefficient. For p > 1, it does this recursively by performing a flip on every
 # single range and then performing another flip on every single range. This is
 # obviously very costly.
-# Time: O(n^(p*n)) | Space: O(n^(p*n))
+# Time: O(n^(p*n)) | Space: O(n^n)
 
 from random import randint
 from typing import Union
@@ -110,7 +116,7 @@ def minStringCoeff(s: str, p: int) -> int:
     return len(s)
 
 # Method 2
-def minStringCoeff(s, p):
+def minStringCoeff(s: str, p: int) -> int:
      
     # Turn string into array of lengths of consecutive 1s or 0s
     def condenseString(s):
@@ -191,12 +197,12 @@ def minStringCoeff(s, p):
     # If p = 0, no flips will be performed
     if p == 0: return sum(coeffs)
     sum_dict = {}
-    # Calculate window with largest sum
+    # Calculate max window with 0 range flips
     min_coeff, sum_dict = get_max_window(coeffs, p, sum_dict)
     curr_coeffs = coeffs
-    # Perform a ranged flip and then calculate max window 
+    # Perform a range flip and then calculate max window 
     # The min(2, p) part was to optimize for passing test cases. This will fail
-    # if we need a "ranged flip" with a depth greater than 2
+    # if we need a "range flip" with a depth greater than 2
     for curr_p in range(min(2, p)):
         curr_coeff, sum_dict = get_max_window(coeffs[1:-1], p - (curr_p + 1), sum_dict)
         min_coeff = min(min_coeff, curr_coeff)
@@ -301,7 +307,7 @@ for _ in range(n):
         #cases.append((s, 2, None))
         cases.append((s, 3, None))
 
-# Special case where "ranged flip" is required with p = 5
+# Special case where "range flip" is required with p = 5
 s = '1010' + '1' * 10 + '01010101010' + '1' * 10 + '1001'
 cases = [(s, 3, None)]
 
