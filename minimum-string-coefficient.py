@@ -151,7 +151,6 @@ def minStringCoeff(s: str, p: int) -> int:
             sum_dict[(left, right)] = curr_sum
         return curr_sum, sum_dict
 
-
     # Move window to the right by 2 places and update sum
     def update_window_sum(left: int, right: int, curr_sum: int, 
                           coeffs: List[int]) -> Union[int, int, int]:
@@ -329,7 +328,8 @@ for _ in range(n):
 #cases = [(s, 3, None)]
 
 for case in cases:
-    s, p, trash  = case
+    s, p, expected = case
     res = minStringCoeff(s, p)
-    ans = minStringCoeffsBruteForce(s, p)
-    print("Passed" if ans == res else "{0} failed with {1} expected {2}".format(s, res, ans))
+    expected = minStringCoeffsBruteForce(s, p)
+    print("Passed" if res == expected else "{0} failed with {1} expected {2}".\
+          format(s, res, ans))
