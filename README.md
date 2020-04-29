@@ -1,7 +1,7 @@
 # Hack the Interview II - Global
 These are my solutions for HackerRank's [Hack the Interview II Contest](https://www.hackerrank.com/contests/hack-the-interview-ii-global/challenges). These solutions placed within the top 100 submissions (2nd percentile). 
 
-Test cases from HackerRank for [Product Distribution](https://github.com/TomBombadilV/hack-the-interview-ii/tree/master/test-cases/product-distribution), [Maximal Char Requests](https://github.com/TomBombadilV/hack-the-interview-ii/tree/master/test-cases/maximal-char-requests), and [Configuring Project Management](https://github.com/TomBombadilV/hack-the-interview-ii/tree/master/test-cases/configuring-project-management) are available in the [test-cases](https://github.com/TomBombadilV/hack-the-interview-ii/tree/master/test-cases) directory. Minimum String Coefficient's test cases were not made available.
+Test cases from HackerRank are available in the [test-cases](https://github.com/TomBombadilV/hack-the-interview-ii/tree/master/test-cases) directory. Minimum String Coefficient's test cases were not made available.
 
 | Challenge | Solution |
 | --------- | -------- |
