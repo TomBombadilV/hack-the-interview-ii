@@ -1,5 +1,5 @@
 # Hack the Interview II - Global
-These are my solutions for HackerRank's [Hack the Interview II Contest](https://www.hackerrank.com/contests/hack-the-interview-ii-global/challenges). These solutions placed within the top 100 submissions (2nd percentile). 
+These are my Python 3 solutions for HackerRank's [Hack the Interview II Contest](https://www.hackerrank.com/contests/hack-the-interview-ii-global/challenges). These solutions placed within the top 100 submissions (2nd percentile). 
 
 Test cases from HackerRank are available in the [test-cases](https://github.com/TomBombadilV/hack-the-interview-ii/tree/master/test-cases) directory. Minimum String Coefficient's test cases were not made available.
 
