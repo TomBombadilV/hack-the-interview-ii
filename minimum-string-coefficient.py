@@ -49,7 +49,7 @@
 # Time: O(n^(p*n)) | Space: O(n^n)
 
 from random import randint
-from typing import Union
+from typing import Dict, List, Union
 
 # First Attempt
 def minStringCoeff(s: str, p: int) -> int:
@@ -154,7 +154,7 @@ def minStringCoeff(s: str, p: int) -> int:
 
     # Move window to the right by 2 places and update sum
     def update_window_sum(left: int, right: int, curr_sum: int, 
-                          coeffs: List[int]) -> Union(int, int, int):
+                          coeffs: List[int]) -> Union[int, int, int]:
         # Delete two left values
         curr_sum = curr_sum - (coeffs[left] + coeffs[(left + 1) % len(coeffs)])
         left = (left + 2) % len(coeffs)
@@ -164,8 +164,8 @@ def minStringCoeff(s: str, p: int) -> int:
         return left, right, curr_sum
 
     # Gets indices of window that will maximize amount subtracted from coefficient
-    def get_max_window_indices(coeffs: List[int], p: int, sum_dict: Dict)\
-        -> Union[int, int]: 
+    def get_max_window_indices(coeffs: List[int], p: int, window_len: int,
+                               sum_dict: Dict) -> Union[int, int]: 
         # Get indices of first window to check (leftmost)
         left, right = (len(coeffs) - window_len) % len(coeffs), len(coeffs)
         # Calculate sum of first window
@@ -193,7 +193,8 @@ def minStringCoeff(s: str, p: int) -> int:
         if window_len >= len(coeffs): 
             return 0, sum_dict
         # Get indices of window that would maximize value subtracted from coeffs
-        max_left, max_right = get_max_window_indices(coeffs, p, sum_dict)
+        max_left, max_right = get_max_window_indices(coeffs, p, window_len, 
+                                                     sum_dict)
         # Update list of chunk lengths to remove window
         if max_left < max_right:
             coeffs = coeffs[max_right:] + coeffs[:max_left]
@@ -319,13 +320,13 @@ for _ in range(n):
     s = ''
     for _ in range(bit_len):
         s += str(randint(0, 1))
-        #cases.append((s, 1, None))
-        #cases.append((s, 2, None))
-        cases.append((s, 3, None))
+        cases.append((s, 1, None))
+        cases.append((s, 2, None))
+        #cases.append((s, 3, None))
 
 # Special case where "range flip" is required with p = 5
-s = '1010' + '1' * 10 + '01010101010' + '1' * 10 + '1001'
-cases = [(s, 3, None)]
+#s = '1010' + '1' * 10 + '01010101010' + '1' * 10 + '1001'
+#cases = [(s, 3, None)]
 
 for case in cases:
     s, p, trash  = case
