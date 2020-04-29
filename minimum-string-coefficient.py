@@ -119,7 +119,7 @@ def minStringCoeff(s: str, p: int) -> int:
 def minStringCoeff(s: str, p: int) -> int:
      
     # Turn string into array of lengths of consecutive 1s or 0s
-    def condenseString(s):
+    def condenseString(s: str) -> List:
         # Empty string
         if not(s): 
             return []
@@ -139,31 +139,45 @@ def minStringCoeff(s: str, p: int) -> int:
         l.append(count)
         return l
 
-    # Gets the indices of the window of length p * 2 that will maximize the 
-    # value subtracted from coefficient
-    def get_max_window_indices(coeffs: List[int], p: int, sum_dict: Dict)\
-        -> Union[int, int]: 
-         # Get indices of first window to check (leftmost)
-        left, right = (len(coeffs) - window_len) % len(coeffs), len(coeffs)
-        # Calculate sum of first window
+    # Calculate sum of first window
+    def first_window_sum(left: int, right: int, coeffs: List[int], 
+                         sum_dict: Dict) -> int:
+        # If already exists in sumdict, get sum
         if (left, right) in sum_dict:
             curr_sum = sum_dict[(left, right)]
+        # If not, add up all numbers in range and update dictionary
         else:
             curr_sum = sum(coeffs[left:right])
             sum_dict[(left, right)] = curr_sum
+        return curr_sum, sum_dict
+
+
+    # Move window to the right by 2 places and update sum
+    def update_window_sum(left: int, right: int, curr_sum: int, 
+                          coeffs: List[int]) -> Union(int, int, int):
+        # Delete two left values
+        curr_sum = curr_sum - (coeffs[left] + coeffs[(left + 1) % len(coeffs)])
+        left = (left + 2) % len(coeffs)
+        right = (right + 2) % len(coeffs)
+        # Add two right values
+        curr_sum = curr_sum + (coeffs[right - 2] + coeffs[right - 1])
+        return left, right, curr_sum
+
+    # Gets indices of window that will maximize amount subtracted from coefficient
+    def get_max_window_indices(coeffs: List[int], p: int, sum_dict: Dict)\
+        -> Union[int, int]: 
+        # Get indices of first window to check (leftmost)
+        left, right = (len(coeffs) - window_len) % len(coeffs), len(coeffs)
+        # Calculate sum of first window
+        curr_sum, sum_dict = first_window_sum(left, right, coeffs, sum_dict)
         # Keep track of max sum and its indices (left inclusive, right exclusive)
         max_sum, max_left, max_right = curr_sum, left, right
         for _ in range(p):
-            # Move window to the right by 2 places and update sum by deleting
-            # two left values and adding two right values
-            curr_sum = curr_sum - (coeffs[left] + coeffs[(left + 1) % len(coeffs)])
-            left = (left + 2) % len(coeffs)
-            right = (right + 2) % len(coeffs)
-            curr_sum = curr_sum + (coeffs[right - 2] + coeffs[right - 1])
+            # Move window indices and update sum
+            left, right, curr_sum = update_window_sum(left, right, curr_sum, coeffs)
             # Update max sum
             if curr_sum > max_sum:
-                max_sum = curr_sum
-                max_left, max_right = left, right
+                max_sum, max_left, max_right = curr_sum, left, right
         return max_left, max_right
 
     # Selects the group of chunks that will maximize the value subtracted from 
@@ -204,7 +218,9 @@ def minStringCoeff(s: str, p: int) -> int:
     # The min(2, p) part was to optimize for passing test cases. This will fail
     # if we need a "range flip" with a depth greater than 2
     for curr_p in range(min(2, p)):
-        curr_coeff, sum_dict = get_max_window(coeffs[1:-1], p - (curr_p + 1), sum_dict)
+        curr_coeff, sum_dict = get_max_window(coeffs[1:-1], 
+                                              p - (curr_p + 1), 
+                                              sum_dict)
         min_coeff = min(min_coeff, curr_coeff)
     return min_coeff 
 
