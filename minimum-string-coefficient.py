@@ -141,7 +141,7 @@ def minStringCoeff(s: str, p: int) -> int:
 
     # Calculate sum of first window
     def first_window_sum(left: int, right: int, coeffs: List[int], 
-                         sum_dict: Dict) -> int:
+                         sum_dict: Dict[int]) -> int:
         # If already exists in sumdict, get sum
         if (left, right) in sum_dict:
             curr_sum = sum_dict[(left, right)]
@@ -164,7 +164,7 @@ def minStringCoeff(s: str, p: int) -> int:
 
     # Gets indices of window that will maximize amount subtracted from coefficient
     def get_max_window_indices(coeffs: List[int], p: int, window_len: int,
-                               sum_dict: Dict) -> Union[int, int]: 
+                               sum_dict: Dict[int]) -> Union[int, int]: 
         # Get indices of first window to check (leftmost)
         left, right = (len(coeffs) - window_len) % len(coeffs), len(coeffs)
         # Calculate sum of first window
