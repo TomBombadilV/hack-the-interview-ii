@@ -21,6 +21,9 @@
 from typing import List
 
 def maxScore(a: List[int], m: int) -> int:
+    """
+    Finds maximum score of given list with given threshold
+    """
     a = sorted(a)
     # Calculate number of buckets needed and number of overflow integers
     segs, overflow = len(a) // m, len(a) % m
