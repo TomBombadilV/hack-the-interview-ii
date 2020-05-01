@@ -51,9 +51,11 @@
 from random import randint
 from typing import Dict, List, Union
 
-# First Attempt
 def minStringCoeff(s: str, p: int) -> int:
-   
+    """
+    First Attempt
+    """
+
     # Counts the length of the leftmost "chunk" of the string
     def count_from_left(s:str) -> int:
         # An empty string has no chunks
@@ -115,9 +117,11 @@ def minStringCoeff(s: str, p: int) -> int:
     # Return new coefficient
     return len(s)
 
-# Method 2
 def minStringCoeff(s: str, p: int) -> int:
-     
+    """
+    Method 2
+    """
+
     # Turn string into array of lengths of consecutive 1s or 0s
     def condenseString(s: str) -> List:
         # Empty string
@@ -224,9 +228,11 @@ def minStringCoeff(s: str, p: int) -> int:
         min_coeff = min(min_coeff, curr_coeff)
     return min_coeff 
 
-# Brute Force Method
 def minStringCoeffsBruteForce(s: str, p: int) -> int:
-    
+    """
+    Brute Force Method
+    """
+
     # Calculate coefficient of string 
     def calculate_coeff(s: str):
         # Coefficient of empty string is 0
