@@ -33,8 +33,10 @@ from bisect import bisect_left, bisect_right
 from collections import defaultdict
 from typing import List
 
-# Method 1
 def getMaxCharCount(s: str, queries: List[List[int]]) -> List[int]:
+    """
+    Method 1
+    """
     # Make string all lowercase
     s = s.lower()
     res = []
@@ -57,9 +59,11 @@ def getMaxCharCount(s: str, queries: List[List[int]]) -> List[int]:
         res.append(count)
     return res
 
-# Method 2
 def getMaxCharCount_2(s: str, queries: List[List[int]]) -> List[int]:
-    
+    """
+    Method 2
+    """
+
     # Get stored max char and count of remaining range and update current char
     def remaining_range(k: int, j: int, query_dic: Dict[int], max_char: int, 
                         count: int) -> Union[int, int]:
@@ -140,8 +144,10 @@ def getMaxCharCount_2(s: str, queries: List[List[int]]) -> List[int]:
     res.append(count)
     return res
 
-# Method 3
 def getMaxCharCount(s: str, queries: List[int]) -> List[int]:
+    """
+    Method 3
+    """
 
     # Takes an interval and the indices of a character and returns the count
     # of that character within the interval
